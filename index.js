@@ -192,8 +192,9 @@ let dog = {
         console.log(this.name)
     }
 }
-let sayName = dog.sayName
-sayName()
+// let sayName = dog.sayName
+dog.sayName();
+// Due to let variable the above code is not running when i call it through object name it will call because let is block scope.
 
 // Why does this code return the results that it does?
 function isBig(thing) {
