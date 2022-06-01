@@ -155,16 +155,16 @@ function User(id, name, profileImg, createdAt, friends) {
     this.createdAt = createdAt;
     this.friends = friends;
 }
-let user1 = new User(1, 'asad', 'http://google.com', new Date(), [2, 'dasa']);
-let user2 = new User(2, 'dasa', 'http://google.com', new Date(), [1, 'asad']);
-let user3 = new User(3, 'walter', 'http://google.com', new Date(), [4, 'white']);
-let user4 = new User(4, 'white', 'http://google.com', new Date(), [3, 'Walter']);
-let user5 = new User(5, 'Brian', 'http://google.com', new Date(), [6, 'Lara']);
-let user6 = new User(6, 'Lara', 'http://google.com', new Date(), [5, 'Brian']);
-let user7 = new User(7, 'Lowkey', 'http://google.com', new Date(), [8, 'Gren']);
-let user8 = new User(8, 'Gren', 'http://google.com', new Date(), [7, 'Lowkey']);
-let user9 = new User(9, 'Maxwell', 'http://google.com', new Date(), [10, 'Vivin']);
-let user10 = new User(10, 'Vivin', 'http://google.com', new Date(), [9, 'Maxwell']);
+let user1 = new User(1, 'asad', 'http://google.com', new Date().toISOString, [2, 'dasa']);
+let user2 = new User(2, 'dasa', 'http://google.com', new Date().toISOString, [1, 'asad']);
+let user3 = new User(3, 'walter', 'http://google.com', new Date().toISOString, [4, 'white']);
+let user4 = new User(4, 'white', 'http://google.com', new Date().toISOString, [3, 'Walter']);
+let user5 = new User(5, 'Brian', 'http://google.com', new Date().toISOString, [6, 'Lara']);
+let user6 = new User(6, 'Lara', 'http://google.com', new Date().toISOString, [5, 'Brian']);
+let user7 = new User(7, 'Lowkey', 'http://google.com', new Date().toISOString, [8, 'Gren']);
+let user8 = new User(8, 'Gren', 'http://google.com', new Date().toISOString, [7, 'Lowkey']);
+let user9 = new User(9, 'Maxwell', 'http://google.com', new Date().toISOString, [10, 'Vivin']);
+let user10 = new User(10, 'Vivin', 'http://google.com', new Date().toISOString, [9, 'Maxwell']);
 let userArr = [user1, user2, user3, user4, user5, user6, user7, user8, user9, user10];
 userArr.forEach(x => {
     console.log(`${x.name} is a friend of ${x.friends[1]}`);
@@ -172,13 +172,14 @@ userArr.forEach(x => {
 // want this code to log out "hey amy", but it logs out "hey arnold" - why?
 
 function greet(person) {
-    if (person == { name: 'amy' }) {
+    if (person == { name: 'amy' }) { //person.name == 'amy'
         return 'hey amy'
     } else {
         return 'hey arnold'
     }
 }
 console.log(greet({ name: 'amy' }));
+// In above code the else block is run due to pass by value or pass by reference in if block the object is compairing with object due to pass by reference
 
 // I want this code to log out the numbers 0, 1, 2, 3 in that order, but it doesn’t do what I expect (this is a bug you run into once in a while, and some people love to ask about it in interviews).
 for (let i = 0; i < 4; i++) {
@@ -201,9 +202,10 @@ function isBig(thing) {
     }
     return true
 }
-isBig(1) // false
-isBig([2]) // false
-isBig([3]) // true
+console.log(isBig(1)); // false
+console.log(isBig([2])); // false
+console.log(isBig([3])); // true
+// The above code accepts both parameters either it object or primitive data type it due to pass by value or pass by reference.
 // How to preserve the immutability on my heroes list?
 const heroes = [
     { name: 'Wolverine', family: 'Marvel', isEvil: false },
@@ -235,7 +237,7 @@ const newHeroes = heroes.map(h => {
 var nums = 5;
 // var sum = ++nums + nums-- + --nums + --nums + nums;
 console.log(`sum of number is: ${++nums + nums-- + --nums + --nums + nums}`);
-console.log(nums);
+// console.log(nums);
 ++nums + nums-- + --nums + --nums + nums == 22;
 // The answer is 22 bcz the prefix value return inncremented/decremented value while postfix returns the same value.
 // And nums value is changing by each prefix increment and decrement. 
