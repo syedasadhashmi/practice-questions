@@ -233,4 +233,9 @@ const newHeroes = heroes.map(h => {
 
 // Why & How
 var nums = 5;
+// var sum = ++nums + nums-- + --nums + --nums + nums;
+console.log(`sum of number is: ${++nums + nums-- + --nums + --nums + nums}`);
+console.log(nums);
 ++nums + nums-- + --nums + --nums + nums == 22;
+// The answer is 22 bcz the prefix value return inncremented/decremented value while postfix returns the same value.
+// And nums value is changing by each prefix increment and decrement. 
