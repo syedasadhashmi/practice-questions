@@ -60,11 +60,12 @@ var arr = [
     { name: 'Zubair', age: 20 },
     { name: 'Kashif', age: 23 },
     { name: 'Wasif', age: 17 },
-    { name: 'Hanzala', age: 28 }
+    { name: 'Hanzala', age: 28 },
+    { name: 'brief', age: 26 }
 ]
 arr.filter(x => {
-    if (x.age >= 18 && x.age <= 28) {
-        console.log(x);
+    if ((x.age >= 18 && x.age <= 28) && (x.name.split('').includes('f'))) {
+        console.log(`filter: ${x.name}`);
     }
 })
 // These are two arrays
@@ -131,10 +132,10 @@ var courses = [
         std_id: ['std1']
     },
 ]
-courses.forEach(cr=>{
-    cr.std_id.forEach(cId=>{
-        students.forEach(s=>{
-            if(cId == s._id){
+courses.forEach(cr => {
+    cr.std_id.forEach(cId => {
+        students.forEach(s => {
+            if (cId == s._id) {
                 console.log(`course ${cr.name} study by ${s.name}`);
             }
         })
@@ -147,64 +148,62 @@ courses.forEach(cr=>{
 // createdAt: Current Date in milliseconds
 // friends: Array consisting of some other user Ids
 // Loop through each user and show the list of friend's name for each user!
-function User(id,name,profileImg,createdAt,friends){
-    this.id=id;
-    this.name=name;
+function User(id, name, profileImg, createdAt, friends) {
+    this.id = id;
+    this.name = name;
     this.profileImg = profileImg;
     this.createdAt = createdAt;
     this.friends = friends;
 }
-let user1 = new User(1,'asad','http://google.com',new Date(), [2,'dasa']);
-let user2 = new User(2,'dasa','http://google.com',new Date(), [1,'asad']);
-let user3 = new User(3,'walter','http://google.com',new Date(), [4,'white']);
-let user4 = new User(4,'white','http://google.com',new Date(), [3,'Walter']);
-let user5 = new User(5,'Brian','http://google.com',new Date(), [6,'Lara']);
-let user6 = new User(6,'Lara','http://google.com',new Date(), [5,'Brian']);
-let user7 = new User(7,'Lowkey','http://google.com',new Date(), [8,'Gren']);
-let user8 = new User(8,'Gren','http://google.com',new Date(), [7,'Lowkey']);
-let user9 = new User(9,'Maxwell','http://google.com',new Date(), [10,'Vivin']);
-let user10 = new User(10,'Vivin','http://google.com',new Date(), [9,'Maxwell']);
-let userArr=[user1,user2,user3,user4,user5,user6,user7,user8,user9,user10];
-userArr.forEach(x=>{
+let user1 = new User(1, 'asad', 'http://google.com', new Date(), [2, 'dasa']);
+let user2 = new User(2, 'dasa', 'http://google.com', new Date(), [1, 'asad']);
+let user3 = new User(3, 'walter', 'http://google.com', new Date(), [4, 'white']);
+let user4 = new User(4, 'white', 'http://google.com', new Date(), [3, 'Walter']);
+let user5 = new User(5, 'Brian', 'http://google.com', new Date(), [6, 'Lara']);
+let user6 = new User(6, 'Lara', 'http://google.com', new Date(), [5, 'Brian']);
+let user7 = new User(7, 'Lowkey', 'http://google.com', new Date(), [8, 'Gren']);
+let user8 = new User(8, 'Gren', 'http://google.com', new Date(), [7, 'Lowkey']);
+let user9 = new User(9, 'Maxwell', 'http://google.com', new Date(), [10, 'Vivin']);
+let user10 = new User(10, 'Vivin', 'http://google.com', new Date(), [9, 'Maxwell']);
+let userArr = [user1, user2, user3, user4, user5, user6, user7, user8, user9, user10];
+userArr.forEach(x => {
     console.log(`${x.name} is a friend of ${x.friends[1]}`);
 })
 // want this code to log out "hey amy", but it logs out "hey arnold" - why?
 
-function greet (person) {
-if (person == { name: 'amy' }) {
-return 'hey amy'
-} else {
-return 'hey arnold'
-}}
+function greet(person) {
+    if (person == { name: 'amy' }) {
+        return 'hey amy'
+    } else {
+        return 'hey arnold'
+    }
+}
 console.log(greet({ name: 'amy' }));
 
 // I want this code to log out the numbers 0, 1, 2, 3 in that order, but it doesn’t do what I expect (this is a bug you run into once in a while, and some people love to ask about it in interviews).
 for (let i = 0; i < 4; i++) {
-setTimeout(() => console.log(i), 0)
+    setTimeout(() => console.log(i), 0)
 }
 // I want this code to log out "doggo", but it logs out undefined!
 let dog = {
-name: 'doggo',
-sayName () {
-console.log(this.name)
-}
+    name: 'doggo',
+    sayName() {
+        console.log(this.name)
+    }
 }
 let sayName = dog.sayName
 sayName()
 
 // Why does this code return the results that it does?
-function isBig (thing) {
-if (thing == 0 || thing == 1 || thing == 2) {
-return false
-}
-return true
+function isBig(thing) {
+    if (thing == 0 || thing == 1 || thing == 2) {
+        return false
+    }
+    return true
 }
 isBig(1) // false
 isBig([2]) // false
 isBig([3]) // true
-
-
-
 // How to preserve the immutability on my heroes list?
 const heroes = [
     { name: 'Wolverine', family: 'Marvel', isEvil: false },
@@ -217,7 +216,15 @@ const heroes = [
     { name: 'Gandalf', family: 'Tolkien', isEvil: false },
     { name: 'Saruman', family: 'Tolkien', isEvil: true }
 ]
-Object.freeze(heroes);
+const deepFreeze = (obj) => {
+    Object.keys(obj).forEach(x => {
+        if ((typeof obj[x] === "object") && (!Object.isFrozen(obj[x]))) {
+            deepFreeze(obj[x]);
+        }
+    });
+    return Object.freeze(obj);
+}
+deepFreeze(heroes);
 
 const newHeroes = heroes.map(h => {
     h.name = h.name.toUpperCase()
@@ -225,4 +232,5 @@ const newHeroes = heroes.map(h => {
 })
 
 // Why & How
-var nums =5; ++nums + nums-- + --nums + --nums + nums == 22;
+var nums = 5;
+++nums + nums-- + --nums + --nums + nums == 22;
