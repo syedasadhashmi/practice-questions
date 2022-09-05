@@ -6,11 +6,12 @@ function srt(num) {
       temp = num[i];
       num[i] = num[i + 1];
       num[i + 1] = temp;
+      i = -1;
     }
   }
   return num;
 }
-console.log(srt([2, 1, 5, 4, 3]));
+console.log(srt([3, 2, 1, 5, 4, 3]));
 // Write a JavaScript function that checks whether a passed string is palindrome or not? A palindrome is word, phrase, or sequence that reads the same backward as forward, e.g., madam.
 function palindrome(arr) {
   xtra = arr.length - 1;
@@ -23,7 +24,7 @@ function palindrome(arr) {
   }
 }
 
-console.log(palindrome('racecar'));
+console.log(palindrome("racecar"));
 // Copy this array to your code
 // var arr = [
 // {name: 'Asher', age: 22},
